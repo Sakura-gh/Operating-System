@@ -85,7 +85,7 @@ CPU里为了让一个进程正确执行所需要获取的信息，叫做PCB(proc
 
 在主板上集成多个物理的CPU
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926102050863.png" alt="image-20200926102050863" style="zoom:80%;" />
+<img src="./img/image-20200926102050863.png" alt="image-20200926102050863" style="zoom:80%;" />
 
 ##### 多核(multi-core)
 
@@ -93,7 +93,7 @@ CPU里为了让一个进程正确执行所需要获取的信息，叫做PCB(proc
 
 - 多核结构中不同CPU之间的通信要比多处理器通过主板总线通信要来的快
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926102111039.png" alt="image-20200926102111039" style="zoom:80%;" />
+<img src="./img/image-20200926102111039.png" alt="image-20200926102111039" style="zoom:80%;" />
 
 ##### Multi Core Vs Hyper Threading
 
@@ -105,7 +105,7 @@ CPU里为了让一个进程正确执行所需要获取的信息，叫做PCB(proc
 
 为了让CPU core运行得更好，可以令每个核心为**多个取指令的单元+一个执行单元**的组合，这样当某个取指单元miss的时候，其他的取指单元还可以顺利地抓到有效指令(多个爪子抓娃娃?)，以实现抓取指令的并行化，从而使得执行单元每时每刻都在运转，这就是超线程的概念
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926102744638.png" alt="image-20200926102744638" style="zoom:80%;" />
+<img src="./img/image-20200926102744638.png" alt="image-20200926102744638" style="zoom:80%;" />
 
 在操作系统的内部，它会把超线程也认为是一个逻辑上的CPU，比如4个核心，每个核心有2个线程，则被认为具有8个逻辑CPU
 
@@ -129,7 +129,7 @@ CPU里为了让一个进程正确执行所需要获取的信息，叫做PCB(proc
 
 实际上用户态的程序虽然不能直接操纵硬件资源，但它也存在这样的需求，就需要通过system call让CPU切换到内核态，让内核态的驱动去实现打开文件、读取数据、操作外设等功能
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926110423467.png" alt="image-20200926110423467" style="zoom:90%;" />
+<img src="./img/image-20200926110423467.png" alt="image-20200926110423467" style="zoom:90%;" />
 
 在一些简单的操作系统(如嵌入式系统)中，用户态和内核态是不区分的
 
@@ -158,7 +158,7 @@ from program to process：
 
 如果一个进程是计算密集型的任务，使CPU持续运算了整个时间段且还未得到结果，此时也需要把它丢到ready状态的队列中，以等待下一轮的running
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926113016223.png" alt="image-20200926113016223"  />
+<img src="./img/image-20200926113016223.png" alt="image-20200926113016223"  />
 
 ##### 并行和并发的区别
 
@@ -178,7 +178,7 @@ from program to process：
 
 当然，线程的使用也有缺点：互相访问数据导致安全性贬低、线程之间的数据同步问题
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926164547567.png" alt="image-20200926164547567" style="zoom:67%;" />
+<img src="./img/image-20200926164547567.png" alt="image-20200926164547567" style="zoom:67%;" />
 
 #### Mechanism and Policy
 
@@ -197,7 +197,7 @@ from program to process：
 
 在下图中，可以在VM上run多个操作系统的内核，为os提供硬件层面的虚拟化，相当于一台物理机可以抽象出多个操作系统，适用于云服务器的应用场景
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926172328613.png" alt="image-20200926172328613" style="zoom:67%;" />
+<img src="./img/image-20200926172328613.png" alt="image-20200926172328613" style="zoom:67%;" />
 
 所谓抽象，就是把一个system分成很多层，每一层只需要关心需要对上一层提供什么样的接口，能够使用下一层提供的什么接口，而无需关心上下层的实现细节
 
@@ -205,7 +205,7 @@ from program to process：
 - 缺点：应用层离CPU层太远，导致它并不知道CPU是如何调度的、操作系统的driver是如何去访问外设的，但是某些专用的应用对访问IO的方式有一定的要求，比如数据库，如果无法控制底层IO优化的策略，就无法提高整体性能，因此需要给应用层提供一些硬件的接口(外内核的概念)
 - 因此孰优孰劣，只能是具体场景具体分析
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926172547200.png" alt="image-20200926172547200" style="zoom:67%;" />
+<img src="./img/image-20200926172547200.png" alt="image-20200926172547200" style="zoom:67%;" />
 
 #### Other System
 
@@ -216,7 +216,7 @@ from program to process：
 - 优点：速度快，带宽高
 - 缺点：如果某个CPU要访问其他CPU的memory就会很慢
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926104408144.png" alt="image-20200926104408144" style="zoom:80%;" />
+<img src="./img/image-20200926104408144.png" alt="image-20200926104408144" style="zoom:80%;" />
 
 ##### Clustered System
 
