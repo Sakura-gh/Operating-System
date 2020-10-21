@@ -10,7 +10,7 @@
 
 
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926191458714.png" alt="image-20200926191458714" style="zoom: 67%;" />
+<img src="/media/gehao/Data/gehao/Documents/CS/Operating-System/notes/img/image-20200926191458714.png" alt="image-20200926191458714" style="zoom: 67%;" />
 
 #### System Call
 
@@ -22,13 +22,13 @@
 
 `cp in.txt out.txt`所触发的system call：在键盘接收输入、屏幕显示输出、得到文件名...都会触发
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926192707239.png" alt="image-20200926192707239" style="zoom: 80%;" />
+<img src="/media/gehao/Data/gehao/Documents/CS/Operating-System/notes/img/image-20200926192707239.png" alt="image-20200926192707239" style="zoom: 80%;" />
 
 ##### 系统调用号
 
 每个system call都会有对应的系统调用号(number)，不同操作系统上各不相同，内核查看系统调用号，查表并调用对应的程序即可
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926195307398.png" alt="image-20200926195307398" style="zoom:67%;" />
+<img src="/media/gehao/Data/gehao/Documents/CS/Operating-System/notes/img/image-20200926195307398.png" alt="image-20200926195307398" style="zoom:67%;" />
 
 ##### 参数传递的方式
 
@@ -38,7 +38,7 @@
 - **Block**：通过block来传参，通常用于传递比较长的参数，比如通过把buffer放到Block里，buffer的地址放到Register或Stack里来传递buffer里的数据
 - **Stack**：通过栈来传参
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926195937006.png" alt="image-20200926195937006" style="zoom:67%;" />
+<img src="/media/gehao/Data/gehao/Documents/CS/Operating-System/notes/img/image-20200926195937006.png" alt="image-20200926195937006" style="zoom:67%;" />
 
 ##### 特殊的系统调用：ioctl
 
@@ -81,7 +81,7 @@ FreeBSD：相对比较好的隔离
 
 **加载器(loader)**：当程序执行的时候，如何把它从磁盘上加载到内存里，解析动态库中，比如libc里的printf函数到底在哪
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926204449862.png" alt="image-20200926204449862" style="zoom:80%;" />
+<img src="/media/gehao/Data/gehao/Documents/CS/Operating-System/notes/img/image-20200926204449862.png" alt="image-20200926204449862" style="zoom:80%;" />
 
 具体代码举例：
 
@@ -118,13 +118,13 @@ int f(int x)
 
 仔细看可以发现，下图中函数调用的地方，跳转地址都为0，这些地址将由具体链接的时候填充完成
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926205115087.png" alt="image-20200926205115087" style="zoom:80%;" />
+<img src="/media/gehao/Data/gehao/Documents/CS/Operating-System/notes/img/image-20200926205115087.png" alt="image-20200926205115087" style="zoom:80%;" />
 
 静态链接生成的可执行文件都是比较大的，因为最后生成的可执行文件是自包含的，它在运行的时候不会再依赖于系统中的任何动态库了
 
 最终生成的可执行文件如下所示，可以看到`printf`函数对应的地址变成了`b180`，即原先在libc里实现的printf函数及其依赖的所有代码都被直接copy到了可执行文件里，这也是文件大的原因
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926205822591.png" alt="image-20200926205822591" style="zoom:80%;" />
+<img src="/media/gehao/Data/gehao/Documents/CS/Operating-System/notes/img/image-20200926205822591.png" alt="image-20200926205822591" style="zoom:80%;" />
 
 优点：自包含，不依赖于别人
 
@@ -138,7 +138,7 @@ int f(int x)
 
 经过计算可得`488`对应的地址为`2fe8`，是跳转表所在的地方，loader会把`printf()`真正的地址写到`2fe8`所对应的内存里
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200926210813098.png" alt="image-20200926210813098" style="zoom:80%;" />
+<img src="/media/gehao/Data/gehao/Documents/CS/Operating-System/notes/img/image-20200926210813098.png" alt="image-20200926210813098" style="zoom:80%;" />
 
 加载器(loader)：
 
@@ -179,7 +179,7 @@ int f(int x)
     - 微内核：此时file system和device driver都在内核外(用户态)，如下图所示，这意味着，用户程序和file system和device driver之间的传递消息必须要通过内核帮忙来实现，整个流程就是用户程序->内核态传递消息->file system->内核态传递消息->device driver
     - 频繁的消息传递导致了微内核的效率低下
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200927095720738.png" alt="image-20200927095720738" style="zoom: 80%;" />
+<img src="/media/gehao/Data/gehao/Documents/CS/Operating-System/notes/img/image-20200927095720738.png" alt="image-20200927095720738" style="zoom: 80%;" />
 
 ##### Kernel Moudles
 
@@ -198,4 +198,4 @@ int f(int x)
 - MicroKernel：微内核，把不一定需要在内核态做的事情放到用户态做，比如file system、driver等
 - ExoKernel：外内核，把部分最简单的资源分配和逻辑放到用户态做
 
-<img src="/media/gehao/Data/gehao/Documents/CS/Operation System/notes/img/image-20200927101956565.png" alt="image-20200927101956565" style="zoom: 80%;" />
+<img src="/media/gehao/Data/gehao/Documents/CS/Operating-System/notes/img/image-20200927101956565.png" alt="image-20200927101956565" style="zoom: 80%;" />
